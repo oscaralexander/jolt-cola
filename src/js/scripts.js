@@ -1,5 +1,7 @@
 import three from './modules/three'
+import win from './modules/win'
 
-window.onload = () => {
+DomReady.ready(() => {
     three.init()
-}
+    win.init()    
+})
