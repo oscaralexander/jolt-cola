@@ -10,8 +10,12 @@
     @media (min-width: 1024px) {
         align-items: center;
         flex-direction: row-reverse;        
-        padding: 80px;
+        padding: 40px 80px;
         position: relative;
+    }
+
+    @media (min-height: 900px) {
+        padding: 80px;
     }
 
     @media (min-width: 1600px) {
