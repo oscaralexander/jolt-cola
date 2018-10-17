@@ -1,27 +1,17 @@
 @charset 'utf-8';
 
-@keyframes tilt {
-    0% { transform: rotate3d(0, 0, 0, 45deg); }
-    15% { transform: rotate3d(0, 1, 0, 45deg); }
-    30% { transform: rotate3d(0, 1, 0, -45deg); }
-    45% { transform: rotate3d(0, 0, 0, 45deg); }
-    60% { transform: rotate3d(1, 0, 0, 45deg); }
-    75% { transform: rotate3d(1, 0, 0, -45deg); }
-    100% { transform: rotate3d(0, 0, 0, 45deg); }
-}
-
-$color: #F24;
-
-* {
-    box-sizing: border-box;
-}
-
 @font-face {
     font-family: 'Rama Gothic E';
     font-style: normal;
     font-weight: 700;
     src: url('/assets/fonts/rama-gothic-e-bold.woff') format('woff'),
          url('/assets/fonts/rama-gothic-e-bold.woff2') format('woff2');
+}
+
+$color: #F24;
+
+* {
+    box-sizing: border-box;
 }
 
 body {
@@ -52,246 +42,17 @@ p {
     line-height: 1.25;
 }
 
-.c-app {
-    display: flex;
-    min-height: 100vh;
-    width: 100%;
+@import 'app';
+@import 'button';
+@import 'instructions';
+@import 'pi';
+@import 'tabs';
+@import 'text';
+@import 'window';
 
-    @media (max-width: 1023px) {
-        flex-direction: column;
-    }
-
-    @media (min-width: 1024px) {
-        align-items: center;
-        flex-direction: row-reverse;        
-        padding: 80px;
-        position: relative;
-    }
-
-    &__three {
-        border-bottom: 1px solid #FFF;
-        height: 85vh;
-        margin-bottom: 15vh;
-        
-        @media (min-width: 1024px) {
-            left: 0;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1;
-        }
-    }
-
-    &__text {
-        padding: 0 24px 32px 24px;
-
-        @media (min-width: 768px) {
-            padding: 0 112px 80px 112px;
-        }
-
-        @media (min-width: 1024px) {
-            flex: 0 0 400px;
-            padding: 0;
-            position: relative;
-            z-index: 2;
-        }
-
-        @media (min-width: 1440px) {
-            flex: 0 0 480px;
-        }
-    }
-
-    &__window {
-        padding: 0 8px;
-
-        @media (min-width: 768px) {
-            padding: 0 112px;
-        }
-
-        @media (min-width: 1024px) {
-            padding: 0;
-        }
-    }
-}
-
-.c-text {
-    h5 {
-        font-weight: 700;
-        margin-bottom: 8px;
-    }
-
-    h1 {
-        border-top: 2px solid $color;
-        font-family: 'Rama Gothic E', sans-serif;
-        font-weight: 700;
-        font-size: 64px;
-        letter-spacing: -0.01em;
-        line-height: 0.9;
-        margin-bottom: 32px;
-        padding-top: 16px;
-        text-transform: uppercase;
-
-        @media (min-height: 900px) {
-            font-size: 68px;
-        }
-    }
-
-    &__body {
-        margin-bottom: 32px;
-    }
-
-    &__price {
-        font-size: 36px;
-        font-weight: bold;
-    }
-
-    &__priceUnit {
-        font-size: 18px;
-    }
-
-    &__button {
-        margin-bottom: 32px;
-    }
-
-    &__legal {
-        font-size: 12px;
-        margin: 0;
-    }
-}
-
-.c-window {
-    background: #000;
-    border: 2px solid $color;
-    border-radius: 4px;
-    
-    @media (min-width: 1024px) {
-        box-shadow: 0 0 80px 0 #000;
-        left: 80px;
-        position: absolute;
-        top: 50%;
-        width: 400px;
-        will-change: transform;
-        z-index: 3;
-    }
-
-    @media (min-width: 1440px) {
-        width: 480px;
-    }
-
-    &__titleBar {
-        cursor: move;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 32px;
-        height: 32px;
-        position: relative;
-        text-align: center;
-    }
-
-    &__expand {
-        background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle fill="none" stroke="%23FF2244" stroke-width="2" stroke-miterlimit="10" cx="10" cy="10" r="9"/><path fill="none" stroke="%23FF2244" stroke-width="2" stroke-miterlimit="10" d="M5 10h10M10 5v10"/></svg>');
-        background-size: 20px 20px;
-        height: 20px;
-        left: 6px;
-        position: absolute;
-        text-align: center;
-        top: 6px;
-        width: 20px;
-
-        &:active {
-            background-position: left bottom;
-        }
-    }
-
-    &__body {
-        border-top: 2px solid $color;
-        font-size: 12px;
-        padding: 2px;
-    }
-
-    &__video {
-        background: #000;
-        height: 0;
-        margin-bottom: 8px;
-        padding-top: 42.8125%;
-        position: relative;
-        width: 100%;
-
-        iframe {
-            height: 100%;
-            left: 0;
-            position: absolute;
-            top: 0;
-            width: 100%;
-        }
-    }
-
-    &__caption {
-        margin: 0;
-        padding: 12px;
-        text-align: center;
-
-        a {
-            color: $color;
-        }
-    }
-
-    &.is-expanded {
-        width: 720px;
-
-        .c-window__expand {
-            background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle fill="none" stroke="%23FF2244" stroke-width="2" stroke-miterlimit="10" cx="10" cy="10" r="9"/><path fill="none" stroke="%23FF2244" stroke-width="2" stroke-miterlimit="10" d="M5 10h10"/></svg>');
-        }
-    }
-}
-
-.c-button {
-    background: $color;
-    border-radius: 24px;
-    border: 2px solid $color;
-    color: #000;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    line-height: 44px;
-    height: 48px;
-    padding: 0 28px;
-    text-decoration: none;
-    text-transform: uppercase;
-
-    &:hover {
-        background: transparent;
-        border: 2px solid $color;
-        color: $color;
-    }
-}
-
-.c-pi {
-    color: #FFF;
-    line-height: 24px;
-    text-decoration: none;
-
-    @media (max-width: 723px) {
-        display: inline-block;
-        float: right;
-        padding: 24px;
-
-        &::after {
-            clear: both;
-            content: '';
-            display: table;
-        }
-    }
-
-    @media (min-width: 768px) {
-        bottom: 24px;
-        position: fixed;
-        right: 24px;
-        z-index: 100;
-    }
-}
+/**
+ * Enforce portrait mode
+ */
 
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
     body {

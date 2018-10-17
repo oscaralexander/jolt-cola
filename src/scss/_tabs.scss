@@ -1,0 +1,39 @@
+@keyframes tabPanel {
+    0% { opacity: 0; transform: translateY(16px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.c-tabs {
+    &__list {
+        border-bottom: 2px solid $color;
+        display: flex;
+        margin-bottom: 16px;
+    }
+
+    &__tab {
+        background: transparent;
+        appearance: none;
+        border: none;
+        color: $color;
+        display: block;
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0;
+        outline: none;
+        padding: 12px;
+
+        &[aria-selected='true'] {
+            background: $color;
+            color: #000;
+        }
+    }
+
+    &__panel {
+        animation: tabPanel 300ms ease-out;
+        display: block;
+
+        &[aria-hidden='true'] {
+            display: none;
+        }
+    }
+}

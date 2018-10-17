@@ -1,0 +1,32 @@
+.c-instructions {
+    font-size: 12px;
+    left: 0;
+    letter-spacing: 0.25em;
+    height: 85vh;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+
+    @media (min-width: 1024px) {
+        display: none;
+    }
+
+    &__left {
+        left: calc(-42vh + 24px);
+        transform: rotate(-90deg);
+        position: absolute;
+        top: 42vh;
+        width: 85vh;
+    }
+
+    &__right {
+        right: calc(-42vh + 24px);
+        transform: rotate(90deg);
+        position: absolute;
+        top: 42vh;
+        width: 85vh;
+    }
+}

@@ -1,0 +1,21 @@
+.c-button {
+    background: $color;
+    border-radius: 24px;
+    border: 2px solid $color;
+    color: #000;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    line-height: 44px;
+    height: 48px;
+    padding: 0 28px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+        background: transparent;
+        border: 2px solid $color;
+        color: $color;
+    }
+}

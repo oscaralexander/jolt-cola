@@ -1,0 +1,24 @@
+.c-pi {
+    color: #FFF;
+    line-height: 24px;
+    text-decoration: none;
+
+    @media (max-width: 723px) {
+        display: inline-block;
+        float: right;
+        padding: 24px;
+
+        &::after {
+            clear: both;
+            content: '';
+            display: table;
+        }
+    }
+
+    @media (min-width: 768px) {
+        bottom: 24px;
+        position: fixed;
+        right: 24px;
+        z-index: 100;
+    }
+}

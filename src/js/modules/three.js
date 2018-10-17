@@ -1,16 +1,25 @@
 let three = {
+    camera: null,
     can: null,
     centerX: window.innerWidth * 0.5,
     centerY: window.innerHeight * 0.5,
+    composer: null,
     deltaX: 0,
     deltaY: 0,
     el: document.getElementById('three'),
+    elPi: document.getElementById('pi'),
+    glitchPass: null,
+    isGlitch: false,
     isMobile: (Modernizr.touchevents && window.innerWidth <= 1024),
     mainLight: null,
     mouseX: 0,
     mouseY: 0,
     paused: false,
     pointLights: [],
+    renderer: null,
+    rotationMaxX: 35,
+    rotationIncrementY: 0.025,
+    scene: null,
     step: 0,
 
     addMainLight() {
@@ -56,8 +65,8 @@ let three = {
 
         if (this.can) {
             this.camera.position.set(0, -0.25 * (this.deltaY / this.centerY), 4)
-            this.can.rotation.x = ((-35 * (this.deltaY / this.centerY)) * Math.PI) / 180
-            this.can.rotation.y += (this.deltaX / this.centerX) * 0.025
+            this.can.rotation.x = ((-this.rotationMaxX * (this.deltaY / this.centerY)) * Math.PI) / 180
+            this.can.rotation.y += (this.deltaX / this.centerX) * this.rotationIncrementY
         }
 
         this.animatePointLights()
@@ -123,6 +132,7 @@ let three = {
         this.initScene()
         this.initRenderer()
         this.initCamera()
+        this.initPostProcessing()
 
         // Geometry
         this.drawCan()
@@ -131,9 +141,11 @@ let three = {
         this.addPointLights()
         this.addMainLight()
 
-        // Interaction listeners
+        // Interaction
         if (this.isMobile) {
             if (Modernizr.devicemotion) {
+                this.rotationIncrementY = 0.05
+                this.rotationMaxX = -40
                 window.addEventListener('deviceorientation', this.onDeviceOrientation.bind(this), false)
             }
         } else {
@@ -152,6 +164,22 @@ let three = {
         this.camera = new THREE.PerspectiveCamera(50, this.el.offsetWidth / this.el.offsetHeight, 0.1, 1000)
         this.camera.position.set(0, 0, 4)
         this.camera.lookAt(0, 0, 0)
+    },
+
+    initPostProcessing() {
+        this.composer = new THREE.EffectComposer(this.renderer)
+        this.glitchPass = new THREE.GlitchPass()
+        this.glitchPass.renderToScreen = true
+        this.composer.addPass(new THREE.RenderPass(this.scene, this.camera))
+        this.composer.addPass(this.glitchPass)
+
+        this.elPi.addEventListener('mouseover', (e) => {
+            this.isGlitch = true
+        })
+
+        this.elPi.addEventListener('mouseout', (e) => {
+            this.isGlitch = false
+        })
     },
 
     initRenderer() {
@@ -194,7 +222,11 @@ let three = {
     },
 
     render() {
-        this.renderer.render(this.scene, this.camera)
+        if (this.isGlitch) {
+            this.composer.render()
+        } else {
+            this.renderer.render(this.scene, this.camera)
+        }
     }
 }
 

@@ -1,0 +1,60 @@
+.c-app {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+
+    @media (max-width: 1023px) {
+        flex-direction: column;
+    }
+
+    @media (min-width: 1024px) {
+        align-items: center;
+        flex-direction: row-reverse;        
+        padding: 80px;
+        position: relative;
+    }
+
+    &__three {
+        height: 85vh;
+        
+        @media (min-width: 1024px) {
+            left: 0;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+        }
+    }
+
+    &__text {
+        padding: 0 24px 32px 24px;
+
+        @media (min-width: 768px) {
+            padding: 0 112px 80px 112px;
+        }
+
+        @media (min-width: 1024px) {
+            flex: 0 0 400px;
+            padding: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (min-width: 1440px) {
+            flex: 0 0 480px;
+        }
+    }
+
+    &__window {
+        padding: 0 8px;
+
+        @media (min-width: 768px) {
+            padding: 0 112px;
+        }
+
+        @media (min-width: 1024px) {
+            padding: 0;
+        }
+    }
+}

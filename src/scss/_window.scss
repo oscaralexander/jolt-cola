@@ -1,0 +1,89 @@
+.c-window {
+    background: #000;
+    border: 2px solid $color;
+    border-radius: 4px;
+    
+    @media (min-width: 1024px) {
+        box-shadow: 0 0 80px 0 #000;
+        left: 80px;
+        position: fixed;
+        top: 50%;
+        width: 400px;
+        will-change: transform;
+        z-index: 3;
+    }
+
+    @media (min-width: 1440px) {
+        width: 480px;
+    }
+
+    &__titleBar {
+        cursor: move;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 32px;
+        height: 32px;
+        position: relative;
+        text-align: center;
+
+        @media (max-width: 1023px) {
+            pointer-events: none;
+        }
+    }
+
+    &__expand {
+        background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle fill="none" stroke="%23FF2244" stroke-width="2" stroke-miterlimit="10" cx="10" cy="10" r="9"/><path fill="none" stroke="%23FF2244" stroke-width="2" stroke-miterlimit="10" d="M5 10h10M10 5v10"/></svg>');
+        background-size: 20px 20px;
+        height: 20px;
+        left: 6px;
+        position: absolute;
+        text-align: center;
+        top: 6px;
+        width: 20px;
+
+        &:active {
+            background-position: left bottom;
+        }
+    }
+
+    &__body {
+        border-top: 2px solid $color;
+        font-size: 12px;
+        padding: 2px;
+    }
+
+    &__video {
+        background: #000;
+        height: 0;
+        margin-bottom: 8px;
+        padding-top: 42.8125%;
+        position: relative;
+        width: 100%;
+
+        iframe {
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+    }
+
+    &__caption {
+        margin: 0;
+        padding: 12px;
+        text-align: center;
+
+        a {
+            color: $color;
+        }
+    }
+
+    &.is-expanded {
+        width: 720px;
+
+        .c-window__expand {
+            background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle fill="none" stroke="%23FF2244" stroke-width="2" stroke-miterlimit="10" cx="10" cy="10" r="9"/><path fill="none" stroke="%23FF2244" stroke-width="2" stroke-miterlimit="10" d="M5 10h10"/></svg>');
+        }
+    }
+}
