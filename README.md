@@ -1,3 +1,3 @@
 # Jolt Cola Unofficial
 
-http://jolt.oscaralexander.com
+http://joltcola.oscaralexander.com
